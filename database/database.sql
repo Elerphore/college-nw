@@ -13,7 +13,10 @@ insert into users () values ();
 CREATE TABLE posts (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    description VARCHAR(40) NOT NULL
+    description VARCHAR(400) NOT NULL,
+    user_id int not null,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE comments (
@@ -26,11 +29,5 @@ CREATE TABLE comments (
     FOREIGN KEY (post_id) REFERENCES posts(id)
 );
 
-CREATE TABLE user_post (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT not null,
-    post_id INT not null,
-
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (post_id) REFERENCES posts(id)
-);
+drop table comments;
+drop table posts;

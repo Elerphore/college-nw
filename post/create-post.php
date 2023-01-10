@@ -3,21 +3,18 @@
 <?php
 require '../database/database.php';
 
-if(isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if(isset($_POST['post'])) {
+    $title = $_POST['title'];
+    $information = $_POST['information'];
+    $userId = $_SESSION['user_id'];
 
-    $stmt = $conn->query("select * from users where username = '$username' and password = '$password'");
-    $user = $stmt->fetch();
-
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['password'] = $user['password'];
+    $conn->exec("insert into posts (title, description, user_id) values ('$title', '$information', $userId)");
 
     header("Location: ../index.php");
 }
 ?>
 
-<form class="container">
+<form class="container" method="post" action="./create-post.php">
     <div class="mb-3">
         <label for="title" class="form-label">Заголовок</label>
         <input type="text" class="form-control" id="title" name="title">
@@ -26,5 +23,5 @@ if(isset($_POST['login'])) {
         <label for="information" class="form-label">Описание</label>
         <input type="text" class="form-control" id="information" name="information">
     </div>
-    <button type="submit" class="btn btn-primary">Отправить</button>
+    <button type="submit" class="btn btn-primary" id="post" name="post">Отправить</button>
 </form>
