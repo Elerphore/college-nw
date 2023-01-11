@@ -26,10 +26,11 @@
                 <a href="../index.php" class="navbar-brand">PINTEREST</a>
                 <div class="d-flex gap-1 align-items-center">
                     <?php if(isset($_SESSION['username'])) { ?>
+                        <a href="../index.php" class="btn btn-primary" type="submit">Главная</a>
                         <a href="../post/create-post.php" class="btn btn-primary" type="submit">Создать новость</a>
 
-                        <button name="logout" id="logout" class="btn btn-primary" type="submit">Ваши новости</button>
-                        <button name="logout" id="logout" class="btn btn-primary" type="submit">Админ анель</button>
+                        <a href="../user/private-posts.php" name="logout" id="logout" class="btn btn-primary" type="submit">Ваши новости</a>
+                        <a href="../admin/admin.php" name="logout" id="logout" class="btn btn-primary" type="submit">Админ панель</a>
 
                         <form action="../index.php" method="post">
                             <button name="logout" id="logout" class="btn btn-danger" type="submit">Выйти</button>

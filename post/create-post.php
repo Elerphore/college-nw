@@ -15,6 +15,9 @@ if(isset($_POST['post'])) {
 ?>
 
 <form class="container" method="post" action="./create-post.php">
+
+    <h1 class="text-center">Создать пост</h1>
+
     <div class="mb-3">
         <label for="title" class="form-label">Заголовок</label>
         <input type="text" class="form-control" id="title" name="title">

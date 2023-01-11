@@ -4,7 +4,7 @@ require '../database/database.php';
 if(isset($_POST['registration'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];;
-    $sql = "insert into users(username, password) values ('$username', '$password')";
+    $sql = "insert into users(username, password, role) values ('$username', '$password', 'user')";
 
     $conn->exec($sql);
     header("Location: ../index.php");
