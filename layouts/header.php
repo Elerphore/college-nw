@@ -30,7 +30,10 @@
                         <a href="../post/create-post.php" class="btn btn-primary" type="submit">Создать новость</a>
 
                         <a href="../user/private-posts.php" name="logout" id="logout" class="btn btn-primary" type="submit">Ваши новости</a>
-                        <a href="../admin/admin.php" name="logout" id="logout" class="btn btn-primary" type="submit">Админ панель</a>
+
+                        <?php if($_SESSION['role'] == 'admin') { ?>
+                            <a href="../admin/admin.php" name="logout" id="logout" class="btn btn-primary" type="submit">Админ панель</a>
+                        <?php } ?>
 
                         <form action="../index.php" method="post">
                             <button name="logout" id="logout" class="btn btn-danger" type="submit">Выйти</button>
