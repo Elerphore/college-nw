@@ -23,24 +23,24 @@
     <header>
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
-                <a href="../index.php" class="navbar-brand">PINTEREST</a>
+                <a href="../index.php" class="navbar-brand">NEWS</a>
                 <div class="d-flex gap-1 align-items-center">
                     <?php if(isset($_SESSION['username'])) { ?>
-                        <a href="../index.php" class="btn btn-primary" type="submit">Главная</a>
-                        <a href="../post/create-post.php" class="btn btn-primary" type="submit">Создать новость</a>
+                        <a href="<?php echo "/" ?>" class="btn btn-primary" type="submit">Главная</a>
+                        <a href="/post/create-post.php" class="btn btn-primary" type="submit">Создать новость</a>
 
-                        <a href="../user/private-posts.php" name="logout" id="logout" class="btn btn-primary" type="submit">Ваши новости</a>
+                        <a href="/user/private-posts.php" name="logout" id="logout" class="btn btn-primary" type="submit">Ваши новости</a>
 
                         <?php if($_SESSION['role'] == 'admin') { ?>
-                            <a href="../admin/admin.php" name="logout" id="logout" class="btn btn-primary" type="submit">Админ панель</a>
+                            <a href="/admin/admin.php" name="logout" id="logout" class="btn btn-primary" type="submit">Админ панель</a>
                         <?php } ?>
 
-                        <form action="../index.php" method="post">
+                        <form action="/index.php" method="post">
                             <button name="logout" id="logout" class="btn btn-danger" type="submit">Выйти</button>
                         </form>
                     <?php } else { ?>
-                        <a href="../authorization/login.php" class="btn btn-outline-success" type="submit">Войти</a>
-                        <a href="../authorization/reg.php" class="btn btn-outline-success" type="submit">Регистрация</a>
+                        <a href="/authorization/login.php" class="btn btn-outline-success" type="submit">Войти</a>
+                        <a href="/authorization/reg.php" class="btn btn-outline-success" type="submit">Регистрация</a>
                     <?php } ?>
                 </div>
             </div>

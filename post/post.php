@@ -3,7 +3,11 @@
 
 require '../database/database.php';
 
-$user_id = $_SESSION['user_id'];
+$user_id = null;
+if(isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+}
+
 $postId = null;
 
 if(isset($_POST['like']) || isset($_POST['dislike'])) {
@@ -82,24 +86,29 @@ $commentsFetch = $conn
             <input disabled type="text" class="form-control" value="<?php echo $post['dislikes_quantity'] ?>">
         </div>
 
-        <form action="./post.php" method="post" class="mb-5">
-            <div class="d-flex gap-1">
-                <input type="hidden" id="postId" name="postId" value="<?php echo $post['postId'] ?>">
-                <button type="submit" name="like" id="like" class="w-100 btn btn-primary">Лайк</button>
-                <button type="submit" name="dislike" id="dislike" class="w-100 btn btn-danger">Дизлайк</button>
-            </div>
-        </form>
+
+        <?php if(isset($_SESSION['user_id'])) { ?>
+            <form action="./post.php" method="post" class="mb-5">
+                <div class="d-flex gap-1">
+                    <input type="hidden" id="postId" name="postId" value="<?php echo $post['postId'] ?>">
+                    <button type="submit" name="like" id="like" class="w-100 btn btn-primary">Лайк</button>
+                    <button type="submit" name="dislike" id="dislike" class="w-100 btn btn-danger">Дизлайк</button>
+                </div>
+            </form>
+        <?php } ?>
 
         <form method="post" action="post.php">
-            <div class="mb-3">
-                <input type="hidden" name="input_post_id" id="input_post_id" value="<?php echo $postId ?>">
-                <label for="comment" class="form-label">Комментарий</label>
-                <input type="text" class="form-control" id="comment" name="comment">
-            </div>
+            <?php if(isset($_SESSION['user_id'])) { ?>
+                <div class="mb-3">
+                    <input type="hidden" name="input_post_id" id="input_post_id" value="<?php echo $postId ?>">
+                    <label for="comment" class="form-label">Комментарий</label>
+                    <input type="text" class="form-control" id="comment" name="comment">
+                </div>
 
-            <div class="d-grid gap-2 mt-4 mb-2">
-                <button name="post_comment" id="comment" type="submit" class="btn btn-primary">Откоментировать</button>
-            </div>
+                <div class="d-grid gap-2 mt-4 mb-2">
+                    <button name="post_comment" id="comment" type="submit" class="btn btn-primary">Откоментировать</button>
+                </div>
+            <?php } ?>
 
             <div class="d-grid fs-5" style="text-align: left">
                 <?php while($comment = $commentsFetch->fetch()) { ?>
